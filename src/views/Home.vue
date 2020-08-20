@@ -1,18 +1,32 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<v-row align="center" justify="center">
+    <v-col cols="12" class="text-center">
+        <div>
+            <h1 class="text-h1" @click="playSound">CAPI GATO</h1>
+        </div>
+    </v-col>
+</v-row>
+
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import {Howl, Howler} from 'howler';
 
 export default {
-  name: 'Home',
+  name: 'home',
+
   components: {
-    HelloWorld
+  }, 
+
+  data: () => ({
+    //
+  }),
+  methods: {
+    playSound () {
+        var audio = new Audio(require('./capi.mp3'))
+        audio.play();
+        
+    }
   }
 }
 </script>
