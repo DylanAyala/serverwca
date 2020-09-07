@@ -1,0 +1,1 @@
+export const SET_LOADING_USER = 'SET_LOADING_USER'
