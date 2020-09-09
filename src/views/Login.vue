@@ -43,7 +43,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" @click="login(form)">Login</v-btn>
+            <v-btn color="primary" @click="login(form)" :loading="getLoadingUser">Login</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import {mapActions} from "vuex"
+import {mapActions, mapGetters} from "vuex"
 
 export default {
   name: "Login",
@@ -63,6 +63,9 @@ export default {
         password: ""
       }
     }
+  },
+  computed: {
+    ...mapGetters(['getLoadingUser'])
   },
   methods: {
     ...mapActions(['login'])

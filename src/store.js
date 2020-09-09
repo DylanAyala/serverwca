@@ -11,17 +11,17 @@ export default new Vuex.Store({
     mutations: {},
     actions: {},
     modules: {
-        UserStore: UserStore,
+        auth: UserStore,
     },
     plugins: [
         createPersistedState({
             key: 'wcaserver',
-            paths: ['UserStore'],
+            paths: ['auth'],
             reducer: state => (
                 {
                     auth: {
-                        access_token: state.UserStore.access_token,
-                        me: state.UserStore.me
+                        access_token: state.auth.access_token,
+                        me: state.auth.me
                     }
                 })
         })
