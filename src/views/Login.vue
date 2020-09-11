@@ -22,13 +22,15 @@
             <v-spacer></v-spacer>
           </v-toolbar>
           <v-card-text>
-            <v-form>
+            <v-form @keyup.enter.native="auth" ref="form" v-model="valid">
               <v-text-field
                   label="Login"
                   name="login"
                   prepend-icon="mdi-account"
                   type="text"
                   v-model="form.username"
+                  :rules="nameRules"
+                  required
               ></v-text-field>
 
               <v-text-field
@@ -38,12 +40,14 @@
                   prepend-icon="mdi-lock"
                   type="password"
                   v-model="form.password"
+                  :rules="passRules"
+                  required
               ></v-text-field>
             </v-form>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" @click="login(form)" :loading="getLoadingUser">Login</v-btn>
+            <v-btn color="primary" @click="auth" :loading="getLoadingUser">Login</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -61,14 +65,27 @@ export default {
       form: {
         username: "",
         password: ""
-      }
+      },
+      valid: false,
+      nameRules: [
+        v => !!v || 'Name is required'
+      ],
+      passRules: [
+        v => !!v || 'Password is required'
+      ],
     }
   },
   computed: {
     ...mapGetters(['getLoadingUser'])
   },
   methods: {
-    ...mapActions(['login'])
+    ...mapActions(['login']),
+
+    auth() {
+      if (this.$refs.form.validate()) {
+        this.login(this.form)
+      }
+    }
   }
 }
 </script>
