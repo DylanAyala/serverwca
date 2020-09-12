@@ -1,6 +1,20 @@
 <template>
   <v-app>
-    <router-view></router-view>
+    <v-app id="inspire">
+      <v-main>
+        <v-container
+            style="width: 70%"
+        >
+          <router-view></router-view>
+        </v-container>
+      </v-main>
+      <v-footer
+          color="gray"
+          app
+      >
+        <span class="white--text">&copy; {{ new Date().getFullYear() }}</span>
+      </v-footer>
+    </v-app>
   </v-app>
 </template>
 
@@ -9,8 +23,7 @@
 export default {
   name: 'App',
 
-  components: {
-  },
+  components: {},
 
   data: () => ({
     //
